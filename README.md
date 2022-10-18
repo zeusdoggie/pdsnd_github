@@ -12,5 +12,8 @@ chicago.csv
 new_york_city.csv
 washington.csv
 
+### Software and Version
+Python 3.6
+
 ### Credits
 Python code written by me in the structure provide by the course.
