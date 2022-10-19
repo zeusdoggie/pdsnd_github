@@ -2,6 +2,7 @@ import time
 import pandas as pd
 import numpy as np
 from datetime import timedelta
+from tabulate import tabulate
 
 CITY_DATA = { 'chicago': 'chicago.csv',
               'new york city': 'new_york_city.csv',
@@ -225,7 +226,7 @@ def user_stats(df):
     print('-'*40)
 
 
-def display_file(city):
+def display_file(df):
     """Displays file."""
     """
     Displays raw data from the chosen file 5 lines at a time.
@@ -238,19 +239,13 @@ def display_file(city):
     start_time = time.time()
 
     # open file and display 5 records at a time
-    f = open(city, 'r')
+    i=5
     while True:
-        for i in range(5):
-            raw_line = f.readline()
-            print(raw_line)
-            if (raw_line == ''):
-                print('\nEnd of File.\n')
-                raise SystemExit
-
-        cont = input('\nWould you like to view more data? Enter yes or no.\n')
-        if cont.lower() != 'yes':
-            f.close()
+        display_data = input('\nWould you like to see 5 lines of raw data? Enter yes or no.\n')
+        if display_data.lower() != 'yes':
             break
+        print(tabulate(df.iloc[np.arange(0+i,5+i)], headers="keys"))
+        i+=5
 
     print("\nThis took %s seconds." % round((time.time() - start_time), 4))
     print('-'*40)
@@ -266,9 +261,7 @@ def main():
         trip_duration_stats(df)
         user_stats(df)
 
-        view_data = input('\nWould you like to view raw data from the file? Enter yes or no.\n')
-        if view_data.lower() == 'yes':
-            display_file(city)
+        display_file(df)
 
         restart = input('\nWould you like to restart? Enter yes or no.\n')
         if restart.lower() != 'yes':
