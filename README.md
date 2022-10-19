@@ -16,4 +16,4 @@ Bikeshare analysis was created for the Udacity Programming for Data Science with
 Python 3.6
 
 ### Credits
-Python code written by me in the structure provide by the course.
+Python code written by me in the structure provide by the course. display_file function refactored with feedback from Udacity python reviewer.
